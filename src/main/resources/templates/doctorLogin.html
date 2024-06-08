@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS for this page -->
+    <style type="text/css">
+        .my-card {
+            box-shadow: 0px 0px 10px 1px #28a745;
+        }
+         /* Navbar and Footer Styling */
+         .navbar-custom {
+            background-color: #333; /* Dark Gray */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff; /* White */
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ddd; /* Light Gray */
+        }
+
+        .navbar-custom .nav-item.active .nav-link {
+            color: #fff; /* White */
+        }
+
+        .footer-custom {
+            background-color: #333; /* Dark Gray */
+            color: #fff; /* White */
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-custom a {
+            color: #fff; /* White */
+        }
+
+        .footer-custom a:hover {
+            color: #ddd; /* Light Gray */
+        }
+    </style>
+</head>
+<body>
+<!--Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand" th:href="@{/}">Doctor and Patient Management App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/contact}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- End of Navigation Bar -->
+
+<!-- Doctor Login -->
+<div class="container p-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card my-card">
+                <div class="card-header text-center text-white bg-success">
+                    <p class="fs-4 text-center text-white mt-2 h5">
+                        <i class="fa fa-stethoscope"></i> Doctor Login
+                    </p>
+                </div>
+                <div class="card-body">
+
+                    <!-- error message  -->
+                    <div th:if="${error}">
+                        <div class="alert alert-danger">Invalid username or password</div>
+                    </div>
+                    <!-- logout message  -->
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">You have been logged out</div>
+                    </div>
+
+                    <!-- Thymeleaf form -->
+                    <form action="#" th:action="@{/doctorLogin}" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input name="email" type="email" placeholder="Enter Email" class="form-control">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input name="password" type="password" placeholder="Enter password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success text-white col-md-12">Submit</button>
+                    </form>
+                    <!-- End of Thymeleaf form -->
+
+                    <!-- Registration link -->
+                    <p class="mt-3 text-center">
+                        New user? <a th:href="@{/doctorRegister}">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Doctor Login -->
+
+<br>
+<br>
+<br>
+<br>
+<!-- Footer -->
+<footer class="bg-dark footer-custom text-white text-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>&copy; 2024 Doctor and Patient Management App</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

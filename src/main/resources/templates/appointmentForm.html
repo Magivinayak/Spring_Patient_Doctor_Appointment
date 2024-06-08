@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Doctor Profile</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style type="text/css">
+        .my-card {
+            box-shadow: 0px 0px 10px 1px #28a745;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #28a745;
+        }
+
+        .btn-login {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background-color: #218838;
+        }
+        /* Navbar and Footer Styling */
+        .navbar-custom {
+            background-color: #333; /* Dark Gray */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff; /* White */
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ddd; /* Light Gray */
+        }
+
+        .navbar-custom .nav-item.active .nav-link {
+            color: #fff; /* White */
+        }
+
+        .footer-custom {
+            background-color: #333; /* Dark Gray */
+            color: #fff; /* White */
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-custom a {
+            color: #fff; /* White */
+        }
+
+        .footer-custom a:hover {
+            color: #ddd; /* Light Gray */
+        }
+    </style>
+</head>
+<body>
+<!--Navbar-->
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand" th:href="@{/}">Doctor and Patient Management App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                    <a class="dropdown-item" href="/logout">Log Out</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/contact}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- End of Navigation Bar -->
+<br>
+<br>
+
+<!-- 2nd Div -->
+<!-- <div class="container p-3">  -->
+<div class="container-fluid">
+
+
+    <div class="row">
+        <!-- col-1 -->
+        <!-- <div class="col-md-6  p-5"> -->
+        <div class="col-sm-9 col-md-6">
+            <!-- Background image -->
+            <img alt="" th:src="@{/imageForAppointment1.jpg}" width="730" height="">
+        </div>
+
+
+        <!-- col-2 -->
+        <div class="col-md-6">
+            <div class="card my-card">
+                <div class="card-body">
+                    <p class="text-center fs-3 h5 text-success">User Appointment</p>
+
+                    <!-- Bootstrap form -->
+                    <form class="row g-3" action="#" th:action="@{/appointment}" th:object="${registerAppointment}" method="POST">
+
+                        <input type="hidden" th:field="*{doctorName}" >
+                        <!--                        n th:value="${doctorEntity.fullName}" th:value="${doctorEntity.doctorId}"-->
+                        <input type="hidden" th:field="*{doctorId}" >
+                        <!-- Full Name -->
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input th:field="*{fullName}" type="text" placeholder="Enter full name" class="form-control">
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-md-6">
+                            <label class="form-label" id="gender">Gender</label>
+                            <select th:field="*{gender}" class="form-control">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-binary</option>
+                            </select>
+                        </div>
+
+                        <!-- Age -->
+                        <div class="col-md-6">
+                            <label class="form-label">Age</label>
+                            <input th:field="*{age}" type="number" min="0" max="120" placeholder="Enter your age" class="form-control">
+                        </div>
+                        <!-- Appointment Date -->
+                        <div class="col-md-6">
+                            <label class="form-label">Appointment Date</label>
+                            <input th:field="*{appointmentDate}" name="appointmentDate" type="date" class="form-control">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input th:field="*{email}" type="email" placeholder="Enter Email" class="form-control">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input th:field="*{phone}" type="text" placeholder="Enter mobile number" class="form-control">
+                        </div>
+
+                        <!-- Diseases -->
+                        <div class="col-md-6">
+                            <label class="form-label">Diseases</label>
+                            <input th:field="*{diseases}" type="text" placeholder="Enter diseases" class="form-control">
+                        </div>
+
+                        <!-- Doctor -->
+                        <div class="col-md-6">
+                            <label class="form-label">Doctor</label>
+                            <p th:text="${doctorEntity.fullName}"></p>
+                        </div>
+
+                        <!-- Full Address -->
+                        <div class="col-md-12">
+                            <label class="form-label">Full Address</label>
+                            <textarea th:field="*{address}" name="address" required="required" class="form-control" rows="3" cols=""></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-submit btn-block">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<hr>
+<a th:href="@{/patientHome}"> Back to Dashboard</a>
+
+<br>
+<!-- Footer -->
+<footer class="bg-dark footer-custom text-white text-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>&copy; 2024 Doctor and Patient Management App</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

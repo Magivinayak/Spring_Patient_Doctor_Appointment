@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style type="text/css">
+        /* Custom Styles */
+        .my-card {
+            box-shadow: 0px 0px 10px 1px maroon;
+            border: none;
+        }
+
+        .carousel-item img {
+            height: auto;
+            max-height: 400px;
+        }
+
+        .myP-color {
+            color: maroon;
+        }
+
+        /* Navbar and Footer Styling */
+        .navbar-custom {
+            background-color: #333; /* Dark Gray */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff; /* White */
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ddd; /* Light Gray */
+        }
+
+        .navbar-custom .nav-item.active .nav-link {
+            color: #fff; /* White */
+        }
+
+        .footer-custom {
+            background-color: #333; /* Dark Gray */
+            color: #fff; /* White */
+        }
+
+        .footer-custom a {
+            color: #fff; /* White */
+        }
+
+        .footer-custom a:hover {
+            color: #ddd; /* Light Gray */
+        }
+
+        /* Feature Card Styling */
+        .feature-card {
+            background-color: #f8f9fa; /* Light Gray */
+            border: 1px solid #ced4da; /* Light Gray */
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Custom Styles for Icons */
+        .card-title i {
+            margin-right: 5px;
+        }
+
+        /* Green Theme for Card Headings */
+        .feature-card .card-title {
+            color: green;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .carousel-item img {
+                max-height: 300px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand" th:href="@{/}">Doctor and Patient Management App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                    <a class="dropdown-item" th:href="@{/docLogin}">Doctor</a>
+                    <a class="dropdown-item" th:href="@{/userLoginForm}">Patient</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/contact}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Image Slider (Carousel) -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" th:src="@{/imageForIndex1.jpg}" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" th:src="@{/imageForIndex2.jpg}" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" th:src="@{/imageForIndex4.jpg}" alt="Image 3">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" th:src="@{/imageForIndex5.jpg}" alt="Image 4">
+        </div>
+
+        <!-- Add more carousel items as needed -->
+    </div>
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- End of Image Slider -->
+
+<!-- First Div Container -->
+<div class="container p-3">
+    <p class="text-center mt-2 mb-5 fs-2 myP-color h2">Check out Our Awesome Features</p>
+    <div class="row">
+        <!-- 1st col -->
+        <div class="col-md-8 p-3">
+            <div class="row">
+                <!-- Feature Cards -->
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success"><i class="fas fa-clock"></i> Instant Appointments</h5>
+                            <p class="card-text">Book appointments instantly with your preferred doctors.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success"><i class="fas fa-video"></i> Telemedicine Healthcare Technology</h5>
+                            <p class="card-text">Consult with healthcare professionals remotely from anywhere.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success"><i class="fas fa-user-md"></i> Personalized Care Plans</h5>
+                            <p class="card-text">Receive personalized care plans tailored to your health needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success"><i class="fas fa-pills"></i> Medication Reminders</h5>
+                            <p class="card-text">Get timely reminders for your medications to stay on track.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more cards as needed -->
+            </div>
+        </div>
+        <!-- End of 1st col -->
+        <!-- Image -->
+        <div class="col-md-4">
+            <img class="mt-3" alt="" th:src="@{/imageForIndex3.jpg}" height="320px" width="470px">
+        </div>
+    </div>
+</div>
+<!-- End of First Div Container -->
+
+<!-- Footer -->
+<footer class="bg-dark footer-custom text-white text-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>&copy; 2024 Doctor and Patient Management App</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

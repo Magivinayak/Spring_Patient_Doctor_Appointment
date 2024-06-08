@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Doctor Profile</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style type="text/css">
+        .my-card {
+            box-shadow: 0px 0px 10px 1px #28a745;
+        }
+         /* Navbar and Footer Styling */
+         .navbar-custom {
+            background-color: #333; /* Dark Gray */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff; /* White */
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ddd; /* Light Gray */
+        }
+
+        .navbar-custom .nav-item.active .nav-link {
+            color: #fff; /* White */
+        }
+
+        .footer-custom {
+            background-color: #333; /* Dark Gray */
+            color: #fff; /* White */
+        }
+
+        .footer-custom a {
+            color: #fff; /* White */
+        }
+
+        .footer-custom a:hover {
+            color: #ddd; /* Light Gray */
+        }
+    </style>
+
+</head>
+<body>
+<!--Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand" th:href="@{/}">Doctor and Patient Management App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/contact}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- End of Navigation Bar -->
+
+<br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card my-card">
+                <div class="card-body">
+
+                    <!--            success message -->
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">
+                            You have successfully Registered.
+                        </div>
+                    </div>
+
+                    <p class="fs-3 text-center text-success h3">Register Doctor Profile</p>
+                    <form action="#" th:action="@{/saveDoctor}" th:object="${doctorEntity}" method="POST">
+
+                        <!--                        <input type="hidden" th:field="*{doctorId}">-->
+                        <div class="form-group">
+                            <label id="fullName">Full Name</label>
+                            <input th:field="*{fullName}" type="text" placeholder="Enter full name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label id="email">Email address</label>
+                            <input th:field="*{email}" type="email" placeholder="Enter Email" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label id="password">Password</label>
+                            <input th:field="*{password}" type="password" placeholder="Enter password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label id="age">Age</label>
+                            <input th:field="*{age}" type="number" min="0" max="120" placeholder="Enter your age" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label id="gender">Gender</label>
+                            <select th:field="*{gender}" class="form-control">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-binary</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="qualification">Qualification</label>
+                            <input th:field="*{qualification}" type="text" placeholder="Enter qualification" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label id="specialist">Specialist</label>
+                            <select th:field="*{specialist}" class="form-control">
+                                <option value ="Doctor Specialist Placeholder">Doctor Specialist Placeholder</option>
+                                <option value="General Physician">General Physician</option>
+                                <option value="Dermatologist">Dermatologist</option>
+                                <option value="Homeopathy">Homeopathy</option>
+                                <option value="Ayurveda">Ayurveda</option>
+                                <option value="Dentist">Dentist</option>
+                                <option value="ENT Specialist">ENT Specialist</option>
+                                <option value="Bone Specialist">Bone Specialist</option>
+                                <option value="Gynecologist/Obstetrician">Gynecologist/Obstetrician</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="phone">Phone</label>
+                            <input th:field="*{phone}" type="text" placeholder="Enter mobile number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label id="fee">Consultancy Fee:</label>
+                            <input th:field="*{fee}" type="number" placeholder="Enter the fee" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success text-white col-md-12">Register</button>
+                        </div>
+                        <div class="fs-3 text-center text-success">
+                            <span>Already registered? <a href="/" th:href="@{/docLogin}">Login here</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<!-- Footer -->
+<footer class="bg-dark footer-custom text-white text-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>&copy; 2024 Doctor and Patient Management App</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

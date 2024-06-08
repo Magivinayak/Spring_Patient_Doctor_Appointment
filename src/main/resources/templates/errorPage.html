@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .jumbotron {
+            background-color:  #333;
+            color: #fff;
+            padding: 50px 20px;
+            margin-bottom: 0;
+        }
+        .jumbotron h1 {
+            font-size: 2.5rem;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Navbar and Footer Styling */
+        .navbar-custom {
+            background-color: #333; /* Dark Gray */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #fff; /* White */
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ddd; /* Light Gray */
+        }
+
+        .navbar-custom .nav-item.active .nav-link {
+            color: #fff; /* White */
+        }
+
+        .footer-custom {
+            background-color: #333; /* Dark Gray */
+            color: #fff; /* White */
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-custom a {
+            color: #fff; /* White */
+        }
+
+        .footer-custom a:hover {
+            color: #ddd; /* Light Gray */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand" th:href="@{/}">Doctor and Patient Management App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                    <a class="dropdown-item" th:href="@{/docLogin}">Doctor</a>
+                    <a class="dropdown-item" th:href="@{/userLoginForm}">Patient</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/contact}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1>Error Page</h1>
+</div>
+
+<!-- Error Display -->
+<div class="container p-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-card">
+                <div class="card-header text-center text-white bg-danger">
+                    <h3 class="text-white">Error Page</h3>
+                </div>
+                <div class="card-body">
+                    <p th:text="${errorMessage}" class="text-danger"></p>
+                    <!--                    <p th:text="${errorDetails}" class="text-danger"></p>-->
+                    <!-- You can add more error details if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Error Display -->
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark footer-custom text-white text-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>&copy; 2024 Doctor and Patient Management App</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
